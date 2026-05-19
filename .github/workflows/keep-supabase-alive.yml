@@ -1,0 +1,17 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 9 * * 1,4' # Montag und Donnerstag, 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Data API
+        run: |
+          curl --fail --silent --show-error \
+            -H "apikey: ${{ sb_publishable_iosMGZhCWIQUyxTvWZUe8Q_46XX8Rk5 }}" \
+            -H "Authorization: Bearer ${{ sb_publishable_iosMGZhCWIQUyxTvWZUe8Q_46XX8Rk5 }}" \
+            "${{ https://albrjyigibbtwwbaorbq.supabase.co }}/rest/v1/"
