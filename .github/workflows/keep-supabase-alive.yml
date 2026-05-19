@@ -2,7 +2,7 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    - cron: '0 9 * * 1,4'   # Montag und Donnerstag, 09:00 UTC
+    - cron: '0 9 * * 1,4'  # Montag und Donnerstag, 09:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -14,8 +14,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Supabase Client
-        run: npm install @supabase/supabase-js
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js ws
 
       - name: Ping Supabase
         env:
@@ -24,12 +24,17 @@ jobs:
         run: |
           node -e "
           const { createClient } = require('@supabase/supabase-js');
-          const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-          
+          const ws = require('ws');
+          const supabase = createClient(
+            process.env.SUPABASE_URL,
+            process.env.SUPABASE_KEY,
+            { realtime: { params: { transport: ws } } }
+          );
+
           const timeout = new Promise((_, reject) =>
             setTimeout(() => reject(new Error('Timeout after 30s')), 30000)
           );
-          
+
           const ping = supabase
             .from('recipes')
             .select('id')
@@ -41,6 +46,6 @@ jobs:
               }
               console.log('Ping successful - Supabase is alive!');
             });
-          
+
           Promise.race([ping, timeout]);
           "
