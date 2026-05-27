@@ -1,50 +1,104 @@
-# React + TypeScript + Vite
+# 🥘 Recipebook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eine digitale Rezeptsammlung als Full-Stack-Webanwendung – gebaut mit React, TypeScript, Supabase und Tailwind CSS.
 
-Currently, two official plugins are available:
+🔗 **[Live-Demo → tolgay-oezdemir.de](https://tolgay-oezdemir.de)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Rezepte durchsuchen** – Volltextsuche über Titel und Zutaten
+- **Kategorien** – Filterung nach Rezeptkategorien
+- **Rezeptdetailseite** – Zutaten, Zubereitung und Metadaten auf einen Blick
+- **Authentifizierung** – Registrierung und Login via Supabase Auth
+- **Eigene Rezepte** – Erstellen, Bearbeiten und Löschen eigener Einträge
+- **Datenbankanbindung** – Persistente Datenhaltung via Supabase (PostgreSQL)
+- **CI/CD** – Automatisiertes Deployment via GitHub Actions
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🛠️ Tech Stack
+
+| Bereich | Technologie |
+|---|---|
+| Frontend | React 18, TypeScript, Vite |
+| Styling | Tailwind CSS |
+| Backend / DB | Supabase (PostgreSQL, Auth, Storage) |
+| State | React Context API |
+| Routing | React Router v6 |
+| Deployment | Vercel + GitHub Actions |
+
+---
+
+## 📁 Projektstruktur
+
+```
+src/
+├── components/     # Wiederverwendbare UI-Komponenten
+├── context/        # React Context (Auth, Rezepte)
+├── lib/            # Supabase-Client & Hilfsfunktionen
+├── pages/          # Seitenkomponenten (Home, Detail, Login, ...)
+├── types/          # TypeScript-Typdefinitionen
+└── assets/         # Statische Assets
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🚀 Lokale Entwicklung
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Voraussetzungen
+
+- Node.js ≥ 18
+- Ein Supabase-Projekt (kostenlos unter [supabase.com](https://supabase.com))
+
+### Installation
+
+```bash
+# Repository klonen
+git clone https://github.com/TOezdemir/project-recipebook.git
+cd project-recipebook
+
+# Abhängigkeiten installieren
+npm install
 ```
+
+### Umgebungsvariablen
+
+Erstelle eine `.env`-Datei im Projektroot:
+
+```env
+VITE_SUPABASE_URL=deine-supabase-url
+VITE_SUPABASE_ANON_KEY=dein-anon-key
+```
+
+Die Werte findest du in deinem Supabase-Projekt unter **Settings → API**.
+
+### Starten
+
+```bash
+npm run dev
+```
+
+Die App läuft dann unter `http://localhost:5173`.
+
+---
+
+## 🔧 Scripts
+
+```bash
+npm run dev       # Entwicklungsserver starten
+npm run build     # Produktions-Build erstellen
+npm run preview   # Build lokal vorschauen
+npm run lint      # ESLint ausführen
+```
+
+---
+
+## 👤 Autor
+
+**Tolgay Özdemir**
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-tolgay--oezdemir.de-000000?style=flat&logo=vercel&logoColor=white)](https://tolgay-oezdemir.de)
+[![GitHub](https://img.shields.io/badge/GitHub-TOezdemir-181717?style=flat&logo=github&logoColor=white)](https://github.com/TOezdemir)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-tolgay--oezdemir-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tolgay-oezdemir)
