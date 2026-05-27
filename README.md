@@ -2,7 +2,6 @@
 
 Eine digitale Rezeptsammlung als Full-Stack-Webanwendung – gebaut mit React, TypeScript, Supabase und Tailwind CSS.
 
-🔗 **[Live-Demo → tolgay-oezdemir.de](https://tolgay-oezdemir.de)**
 
 ---
 
